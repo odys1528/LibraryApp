@@ -1,5 +1,7 @@
 package odys.com.app;
 
+import java.util.NoSuchElementException;
+
 public enum Option {
     EXIT(0, "Wyjście z programu"),
     ADD_BOOK(1, "Dodanie książki"),
@@ -29,6 +31,12 @@ public enum Option {
     }
 
     public static Option createFromInt(int option) {
-        return Option.values()[option];
+        Option result = null;
+        try {
+            result = Option.values()[option];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new NoSuchElementException("Nie odnaleziono elementu.");
+        }
+        return result;
     }
 }

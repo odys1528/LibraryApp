@@ -1,5 +1,7 @@
 package odys.com.data;
 
+import java.util.Arrays;
+
 public class Library {
     public static final int MAX_PUBLICATIONS = 2000;
     private Publication[] publications;
@@ -30,39 +32,20 @@ public class Library {
     }
 
     private void addPublication(Publication publication) {
-        if (publicationsNumber < MAX_PUBLICATIONS) {
-            publications[publicationsNumber] = publication;
-            publicationsNumber++;
-        } else {
-            System.out.println("Maksymalna liczba publikacji została osiągnięta.");
+        if (publicationsNumber == MAX_PUBLICATIONS) {
+            throw new ArrayIndexOutOfBoundsException("Maksymalna liczba publikacja została osiągnięta.");
         }
+        publications[publicationsNumber] = publication;
+        publicationsNumber++;
     }
 
-    public void printBooks() {
-        int countBooks = 0;
-        for(int i=0; i<publicationsNumber; i++) {
-            if (publications[i] instanceof Book) {
-                System.out.println(publications[i]);
-                countBooks++;
-            }
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (int i=0; i<publicationsNumber; i++) {
+            builder.append(publications[i]);
+            builder.append("\n");
         }
-
-        if (countBooks == 0) {
-            System.out.println("Brak książek w bibliotece.");
-        }
-    }
-
-    public void printMagazines() {
-        int countMagazines = 0;
-        for(int i=0; i<publicationsNumber; i++) {
-            if (publications[i] instanceof Magazine) {
-                System.out.println(publications[i]);
-                countMagazines++;
-            }
-        }
-
-        if (countMagazines == 0) {
-            System.out.println("Brak książek w bibliotece.");
-        }
+        return builder.toString();
     }
 }

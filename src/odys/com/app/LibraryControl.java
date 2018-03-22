@@ -4,6 +4,10 @@ import odys.com.data.Book;
 import odys.com.data.Library;
 import odys.com.data.Magazine;
 import odys.com.utils.DataReader;
+import odys.com.utils.LibraryUtils;
+
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 
 import static odys.com.app.Option.*;
 
@@ -17,26 +21,32 @@ public class LibraryControl {
     }
 
     public void controlLoop() {
-        Option option;
-        printOptions();
-        while((option = Option.createFromInt(dataReader.getInt())) != EXIT) {
-            switch (option) {
-                case ADD_BOOK:
-                    addBook();
-                    break;
-                case ADD_MAGAZINE:
-                    addMagazine();
-                    break;
-                case PRINT_BOOKS:
-                    printBooks();
-                    break;
-                case PRINT_MAGAZINES:
-                    printMagazines();
-                    break;
-                default:
-                    System.out.println("Nie ma takiej opcji.");
+        Option option = null;
+        while(option != Option.EXIT) {
+            try {
+                printOptions();
+                option = Option.createFromInt(dataReader.getInt());
+                switch (option) {
+                    case ADD_BOOK:
+                        addBook();
+                        break;
+                    case ADD_MAGAZINE:
+                        addMagazine();
+                        break;
+                    case PRINT_BOOKS:
+                        printBooks();
+                        break;
+                    case PRINT_MAGAZINES:
+                        printMagazines();
+                        break;
+                    case EXIT:
+                        ;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Wprowadzono niepoprawne dane.");
+            } catch (NumberFormatException | NoSuchElementException e) {
+                System.out.println("Wybrana opcja nie istnieje.");
             }
-            printOptions();
         }
         dataReader.close();
     }
@@ -54,7 +64,7 @@ public class LibraryControl {
     }
 
     private void printBooks() {
-        library.printBooks();
+        LibraryUtils.printBooks(library);
     }
 
     private void addMagazine() {
@@ -63,6 +73,6 @@ public class LibraryControl {
     }
 
     private void printMagazines() {
-        library.printMagazines();
+        LibraryUtils.printMagazines(library);
     }
 }
