@@ -28,4 +28,10 @@ public class Publication {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+
+    public Publication(int year, String title, String publisher) {
+        this.year = year;
+        this.title = title;
+        this.publisher = publisher;
+    }
 }
