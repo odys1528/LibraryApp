@@ -66,11 +66,13 @@ public class Book {
     }
 
     public Book(Book book) {
-        this(book.title, book.author, book.releaseDate, book.pages, book.publisher, book.isbn);
+        this(book.getTitle(), book.getAuthor(), book.getReleaseDate(), book.getPages(), book.getPublisher(),
+                book.getIsbn());
     }
 
     public void printInfo() {
-        String info = title + "; " + author + "; " + releaseDate + "; " + pages  + "; " + publisher + "; " + isbn;
+        String info = getTitle() + "; " + getAuthor() + "; " + getReleaseDate() + "; " + getPages() + "; " +
+                getPublisher() + "; " + getIsbn();
         System.out.println(info);
     }
 }
