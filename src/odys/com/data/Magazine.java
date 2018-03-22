@@ -36,9 +36,34 @@ public class Magazine extends Publication {
         this.setDay(day);
     }
 
-    public void printInfo() {
-        String info = getTitle() + "; " + getPublisher() + "; " + getLanguage() + "; " + getYear() + "; " + getMonth()
-                + "; " + getDay();
-        System.out.println(info);
+    @Override
+    public String toString() {
+        return "Magazine{" +
+                "month=" + month +
+                ", day=" + day +
+                ", language='" + language + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Magazine magazine = (Magazine) o;
+
+        if (getMonth() != magazine.getMonth()) return false;
+        if (getDay() != magazine.getDay()) return false;
+        return getLanguage() != null ? getLanguage().equals(magazine.getLanguage()) : magazine.getLanguage() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + getMonth();
+        result = 31 * result + getDay();
+        result = 31 * result + (getLanguage() != null ? getLanguage().hashCode() : 0);
+        return result;
     }
 }

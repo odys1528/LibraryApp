@@ -34,4 +34,24 @@ public class Publication {
         this.title = title;
         this.publisher = publisher;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Publication that = (Publication) o;
+
+        if (getYear() != that.getYear()) return false;
+        if (getTitle() != null ? !getTitle().equals(that.getTitle()) : that.getTitle() != null) return false;
+        return getPublisher() != null ? getPublisher().equals(that.getPublisher()) : that.getPublisher() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getYear();
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        result = 31 * result + (getPublisher() != null ? getPublisher().hashCode() : 0);
+        return result;
+    }
 }

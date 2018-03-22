@@ -41,9 +41,34 @@ public class Book extends Publication {
                 book.getIsbn());
     }
 
-    public void printInfo() {
-        String info = getTitle() + "; " + getAuthor() + "; " + getYear() + "; " + getPages() + "; " +
-                getPublisher() + "; " + getIsbn();
-        System.out.println(info);
+    @Override
+    public String toString() {
+        return "Book{" +
+                "author='" + getAuthor() + '\'' +
+                ", pages=" + getPages() +
+                ", isbn='" + getIsbn() + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Book book = (Book) o;
+
+        if (getPages() != book.getPages()) return false;
+        if (getAuthor() != null ? !getAuthor().equals(book.getAuthor()) : book.getAuthor() != null) return false;
+        return getIsbn() != null ? getIsbn().equals(book.getIsbn()) : book.getIsbn() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
+        result = 31 * result + getPages();
+        result = 31 * result + (getIsbn() != null ? getIsbn().hashCode() : 0);
+        return result;
     }
 }
