@@ -1,6 +1,7 @@
 package odys.com.utils;
 
 import odys.com.data.Book;
+import odys.com.data.Magazine;
 
 import java.util.Scanner;
 
@@ -38,5 +39,25 @@ public class DataReader {
         scanner.nextLine();
 
         return new Book(title, author, releaseDate, pages, publisher, isbn);
+    }
+
+    public Magazine readAndCreateMagazine() {
+        System.out.println("Tytuł: ");
+        String title = scanner.nextLine();
+        System.out.println("Wydawnictwo: ");
+        String publisher = scanner.nextLine();
+        System.out.println("Język: ");
+        String language = scanner.nextLine();
+        System.out.println("Rok wydania: ");
+        int year = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Miesiąc: ");
+        int month = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Dzień: ");
+        int day = scanner.nextInt();
+        scanner.nextLine();
+
+        return new Magazine(title, publisher, language, year, month, day);
     }
 }
