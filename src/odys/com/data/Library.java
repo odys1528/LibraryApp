@@ -1,7 +1,7 @@
 package odys.com.data;
 
 public class Library {
-    public final int MAX_BOOKS = 1000;
+    public static final int MAX_BOOKS = 1000;
     private Book[] books;
     private int booksNumber;
 

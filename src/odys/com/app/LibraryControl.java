@@ -5,9 +5,9 @@ import odys.com.data.Library;
 import odys.com.utils.DataReader;
 
 public class LibraryControl {
-    public final int EXIT = 0;
-    public final int ADD_BOOK = 1;
-    public final int PRINT_BOOKS = 2;
+    public static final int EXIT = 0;
+    public static final int ADD_BOOK = 1;
+    public static final int PRINT_BOOKS = 2;
 
     private DataReader dataReader;
     private Library library;
